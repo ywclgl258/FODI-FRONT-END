@@ -10,7 +10,7 @@ dns:
   default-nameserver:
     - 114.114.114.114
     - 223.5.5.5
-  enhanced-mode: redir-host
+  fake-ip: redir-host
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://223.5.5.5/dns-query
@@ -19,11 +19,11 @@ dns:
     - 223.5.5.5
 
 proxies:
-  - name: "Hys-jiugongshenshe.top"
+  - name: "枫叶-新加坡"
     type: hysteria
     server: jiugongshenshe.top
     ports: 47000-48000
-    auth_str: XArgYffgkBKkDpeFAz9v6cH2gWP5May99Fgsa0LeXTx8Pasb72
+    auth_str: icROhRb9GSw9tG3aIDVA0eeNf3sPVKQJYx05rLBPG740gBfayY
     alpn:
       - h3
     protocol: udp
@@ -35,12 +35,13 @@ proxies:
     recv_window: 23068672
     disable_mtu_discovery: true
     fast-open: true
+
 proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-     - Hys-jiugongshenshe.top
-
+     - "枫叶-新加坡"
+     
 rule-providers:
   reject:
     type: http
@@ -142,6 +143,10 @@ rule-providers:
 
 rules:
   - RULE-SET,applications,DIRECT
+  - DOMAIN,cwres.ting-zhou.com,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,gamekee,DIRECT
+  - DOMAIN-KEYWORD,design006,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN,services.googleapis.cn,PROXY
@@ -155,6 +160,7 @@ rules:
   - RULE-SET,lancidr,DIRECT
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,telegramcidr,PROXY
+  - DOMAIN-KEYWORD,nikke,PROXY
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,PROXY
